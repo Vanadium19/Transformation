@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotater : MonoBehaviour
 {
-    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _speed;
 
     private float _startRotationY = 0;
     private float _finalRotationY = 359;
@@ -20,7 +20,7 @@ public class Rotater : MonoBehaviour
 
     private void Rotate()
     {
-        _targetRotationY = Mathf.MoveTowards(_targetRotationY, _finalRotationY, _rotationSpeed * Time.deltaTime);
+        _targetRotationY = Mathf.MoveTowards(_targetRotationY, _finalRotationY, _speed * Time.deltaTime);
         transform.rotation = Quaternion.Euler(0, _targetRotationY, 0);
     }
 }

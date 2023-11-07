@@ -9,13 +9,13 @@ public class Increaser : MonoBehaviour
     private Vector3 _startScale;
     private Vector3 _finaleScale = new Vector3(3, 3, 3);
     private Vector3 _targetScale;
-    private Coroutine _increaser;
+    private Coroutine _scaleChanger;
 
     private void Start()
     {
         _startScale = transform.localScale;
         _targetScale = _finaleScale;
-        StartIncrease();
+        StartChangeScale();
     }
 
     private void Update()
@@ -23,28 +23,28 @@ public class Increaser : MonoBehaviour
         if (transform.localScale == _targetScale)
         {
             _targetScale = transform.localScale == _finaleScale ? _startScale : _finaleScale;
-            RestartIncrease();
+            RestartChangeScale();
         }
     }  
 
-    private void RestartIncrease()
+    private void RestartChangeScale()
     {
-        StopIncrease();
-        StartIncrease();
+        StopChangeScale();
+        StartChangeScale();
     }
 
-    private void StartIncrease()
+    private void StartChangeScale()
     {
-        _increaser = StartCoroutine(Increase());
+        _scaleChanger = StartCoroutine(ChangeScale());
     }
 
-    private void StopIncrease()
+    private void StopChangeScale()
     {
-        if (_increaser != null)
-            StopCoroutine(_increaser);
+        if (_scaleChanger != null)
+            StopCoroutine(_scaleChanger);
     }
 
-    private IEnumerator Increase()
+    private IEnumerator ChangeScale()
     {
         while (transform.localScale != _targetScale)
         {
